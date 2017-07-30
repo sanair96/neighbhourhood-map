@@ -1,4 +1,4 @@
-# neighbhourhood-map
+# neighbourhood-map
 Udacity Project 6
 
 
