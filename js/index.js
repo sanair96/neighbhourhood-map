@@ -7,7 +7,7 @@ var settings = {"async": false, "crossDomain": true,
  "url": "https://developers.zomato.com/api/v2.1/search?entity_type=city&count=5&lat=12.9648003&lon=77.5389259&sort=cost&order=desc",
   "method": "GET", "headers": {"user-key": "e64f3ce5bc66697bf5a46b14d7d00774"
 } 
-} 
+};
 var res = ''; 
 
 $.ajax(settings).done(function (response) {
@@ -34,8 +34,8 @@ locMod.location = ko.observableArray([
 		}); 
 	}, locMod); 
 	locMod.openInfowindow = function(locat) {
-		google.maps.event.trigger(locat.marker,"click") 
-	} 
+		google.maps.event.trigger(locat.marker,"click");
+	};
 	function googleError() {
 		alert("Error Fetching Data"); 
 	} 
@@ -57,13 +57,13 @@ locMod.location = ko.observableArray([
 				  		locMod.location[i].infowindow.close(); 
 				  	} 
 				  	toggleBounce(self.marker); 
-				  	map.panTo(self.marker.getPosition()) 
+				  	map.panTo(self.marker.getPosition());
 				  	self.infowindow.setContent(self.desc); 
 				  	self.infowindow.open(map, self.marker);
 				  	 }); 
 				} 
 			}); 
-	}; 
+	}
 	function toggleBounce(marker) {
 		if (marker.getAnimation() !== null) {
 			marker.setAnimation(null);
