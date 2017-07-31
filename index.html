@@ -2,7 +2,8 @@
 <html>
   <head>
     <title>Neighbourhood</title>
-    <meta name= 'viewport' content="width = device-width,initial-scale=1.0">
+    <meta charset="utf-8">
+    <meta name= "viewport" content="width = device-width,initial-scale=1.0">
     <link href="https://fonts.googleapis.com/css?family=Raleway" rel="stylesheet">
     <link rel="stylesheet" type="text/css" href="css/index.css">
   </head>
@@ -15,14 +16,17 @@
     <div id="map"></div>
   </div>
 </body>
-<script type="text/html" id="locat">
-<li class="loc-item" data-bind="text: title, click: $root.openInfowindow"></li>
-</script>
+
+
+<script type="text/html" id="locat"><li class="loc-item" data-bind="text: title, click: $root.openInfowindow"></li></script>
+
 <script src="https://code.jquery.com/jquery-1.11.3.min.js"></script>
+
 <script src="https://cdnjs.cloudflare.com/ajax/libs/knockout/3.3.0/knockout-min.js"></script>
-<script>
-</script>
+
 <script src="js/index.js"></script>
+
 <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCKwDee8c6YmxLEHsdlnrnHiXhsp9aysMc&callback=initMap"
-async defer></script>
+async defer onerror = "gerror();"></script>
+
 </html>
