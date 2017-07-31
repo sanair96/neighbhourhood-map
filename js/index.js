@@ -12,7 +12,7 @@ function initMap() {
     locMod.google(!!window.google);
 }
 var settings = {
-    "async": false,
+    "async": true,
     "crossDomain": true,
     "url": "https://developers.zomato.com/api/v2.1/search?entity_type=city&count=5&lat=12.9648003&lon=77.5389259&sort=cost&order=desc",
     "method": "GET",
@@ -24,20 +24,28 @@ var res = '';
 
 $.ajax(settings).done(function(response) {
     res = response;
+    loadDone();
 }).fail(function() {
     alert("Zomato Api Failed to produce a response, Sorry for the inconvenience. Please try again.");
 });
 
+function loadDone() {
+    locMod.location = ko.observableArray([
+        new Loc(res.restaurants[0].restaurant.name, res.restaurants[0].restaurant.location.latitude, res.restaurants[0].restaurant.location.longitude, res.restaurants[0].restaurant.user_rating.aggregate_rating),
+        new Loc(res.restaurants[1].restaurant.name, res.restaurants[1].restaurant.location.latitude, res.restaurants[1].restaurant.location.longitude, res.restaurants[1].restaurant.user_rating.aggregate_rating),
+        new Loc(res.restaurants[2].restaurant.name, res.restaurants[2].restaurant.location.latitude, res.restaurants[2].restaurant.location.longitude, res.restaurants[2].restaurant.user_rating.aggregate_rating),
+        new Loc(res.restaurants[3].restaurant.name, res.restaurants[3].restaurant.location.latitude, res.restaurants[3].restaurant.location.longitude, res.restaurants[3].restaurant.user_rating.aggregate_rating),
+        new Loc(res.restaurants[4].restaurant.name, res.restaurants[4].restaurant.location.latitude, res.restaurants[4].restaurant.location.longitude, res.restaurants[4].restaurant.user_rating.aggregate_rating)
+    ]);
+
+}
+
+
 var locMod = {};
 locMod.google = ko.observable(!!window.google);
-locMod.location = ko.observableArray([
-    new Loc(res.restaurants[0].restaurant.name, res.restaurants[0].restaurant.location.latitude, res.restaurants[0].restaurant.location.longitude, res.restaurants[0].restaurant.user_rating.aggregate_rating),
-    new Loc(res.restaurants[1].restaurant.name, res.restaurants[1].restaurant.location.latitude, res.restaurants[1].restaurant.location.longitude, res.restaurants[1].restaurant.user_rating.aggregate_rating),
-    new Loc(res.restaurants[2].restaurant.name, res.restaurants[2].restaurant.location.latitude, res.restaurants[2].restaurant.location.longitude, res.restaurants[2].restaurant.user_rating.aggregate_rating),
-    new Loc(res.restaurants[3].restaurant.name, res.restaurants[3].restaurant.location.latitude, res.restaurants[3].restaurant.location.longitude, res.restaurants[3].restaurant.user_rating.aggregate_rating),
-    new Loc(res.restaurants[4].restaurant.name, res.restaurants[4].restaurant.location.latitude, res.restaurants[4].restaurant.location.longitude, res.restaurants[4].restaurant.user_rating.aggregate_rating)
-]);
+locMod.location = ko.observableArray([]);
 locMod.query = ko.observable('');
+locMod.search_res;
 locMod.search_res = ko.computed(function() {
     var self = this;
     var query = this.query().toLowerCase();
@@ -98,7 +106,7 @@ function toggleBounce(marker) {
         }, 1400);
     }
 }
-gerror = function(){
-	alert("Google Maps failed to load, Sorry for the inconvenience. Please try again later.");
+gerror = function() {
+    alert("Google Maps failed to load, Sorry for the inconvenience. Please try again later.");
 };
 ko.applyBindings(locMod);

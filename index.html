@@ -10,7 +10,7 @@
   <body>
     <div class="flex">
       <div class="search-area">
-        <input placeholder="Search for places" type="text" name="query" data-bind = "textInput: query">
+        <input id= 'query' placeholder="Search for places" type="text" name="query" data-bind = "textInput: query">
       <ul class="search-ul" data-bind="template: {name: 'locat', foreach: search_res}"></ul>
     </div>
     <div id="map"></div>
