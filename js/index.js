@@ -25,6 +25,8 @@ var res = '';
 $.ajax(settings).done(function(response) {
     res = response;
     loadDone();
+    locMod.query(' ');
+    locMod.query('');
 }).fail(function() {
     alert("Zomato Api Failed to produce a response, Sorry for the inconvenience. Please try again.");
 });
