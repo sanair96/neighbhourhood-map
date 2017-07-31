@@ -72,7 +72,7 @@ function Loc(title, lat, long, disp) {
     this.title = title;
     this.lng = long;
     this.lat = lat;
-    this.desc = 'Rating by Users - ' + disp;
+    this.desc = title+'<br><br>Rating by Users - ' + disp;
     this.addMapFunctionality = ko.computed(function() {
         if (locMod.google()) {
             self.infowindow = new google.maps.InfoWindow();
