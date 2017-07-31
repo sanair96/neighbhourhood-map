@@ -100,5 +100,5 @@ function toggleBounce(marker) {
 }
 gerror = function(){
 	alert("Google Maps failed to load, Sorry for the inconvenience. Please try again later.");
-}
+};
 ko.applyBindings(locMod);
